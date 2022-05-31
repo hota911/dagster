@@ -129,9 +129,8 @@ def build_assets_job(
         else:
             all_resource_defs[source_asset.get_io_manager_key()] = source_asset.io_manager_def
 
-    all_resource_defs = merge_dicts({"io_manager": fs_asset_io_manager}, all_resource_defs)
     for required_key in sorted(list(required_io_manager_keys)):
-        if required_key not in all_resource_defs:
+        if required_key not in all_resource_defs and required_key != "io_manager":
             raise DagsterInvalidDefinitionError(
                 f"Error when attempting to build job '{name}': source asset with key '{source_asset.key}' requires IO Manager for key '{source_asset.get_io_manager_key()}', but none was provided."
             )
