@@ -337,10 +337,11 @@ def solid_config_field(
     trimmed_fields = remove_none_entries(fields)
     if trimmed_fields:
         if ignored:
+            node_type = "op" if is_using_graph_job_op_apis else "solid"
             return Field(
                 Shape(trimmed_fields, field_aliases=field_aliases),
                 is_required=False,
-                description="This solid is not present in the current solid selection, "
+                description=f"This {node_type} is not present in the current {node_type} selection, "
                 "the config values are allowed but ignored.",
             )
         else:
