@@ -196,7 +196,7 @@ def make_slack_on_run_failure_sensor(
 
             @repository
             def my_repo():
-                return [my_job + slack_on_run_failure]
+                return [my_job, slack_on_run_failure]
 
         .. code-block:: python
 
